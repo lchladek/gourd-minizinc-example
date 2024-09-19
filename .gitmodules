@@ -1,0 +1,6 @@
+[submodule "minizinc-benchmarks"]
+	path = minizinc-benchmarks
+	url = https://github.com/MiniZinc/minizinc-benchmarks
+[submodule "Pumpkin"]
+	path = Pumpkin
+	url = https://github.com/ConSol-Lab/Pumpkin

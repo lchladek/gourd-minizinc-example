@@ -1,0 +1,31 @@
+# Example `gourd.toml` for the Gourd Experiment Scheduler
+# See the manual page for gourd(1)
+#
+# "MiniZinc Example"
+# An example of using Gourd to process MiniZinc inputs.
+
+# Put all outputs and metrics in the same folder
+output_path = "experiments"
+metrics_path = "experiments"
+experiments_folder = "experiments"
+
+input_schema = "resources/input_list.toml"
+
+[input]
+
+[git_resource.pumpkin-solver]
+submodule_name = "Pumpkin"
+compile_script = "../scripts/compile_pumpkin.sh"
+file = "minizinc/pumpkin.msc"
+store = "resources/pumpkin.msc"
+
+[git_resource.minizinc-benchmarks]
+submodule_name = "minizinc-benchmarks"
+compile_script = "../scripts/generate_input_list.sh"
+file = "input_list.toml"
+store = "resources/input_list.toml"
+
+# Define the program (the minizinc solver)
+[program.minizinc]
+binary = "/opt/homebrew/bin/minizinc"
+arguments = ["-v", "--time-limit", "600000", "--solver", "../../../../Pumpkin/minizinc/pumpkin.msc"]
